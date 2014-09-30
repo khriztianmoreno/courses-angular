@@ -1,0 +1,11 @@
+<h3>Course Outline</h3>
+<div ng-repeat="module in crsCtrl.course.modules">
+	<br/>
+	<h4>Module {{module.id}}: {{module.name}}</h4>
+	<b>Lessons: {{module.lessons.name}}</b>
+	<ul>
+		<li ng-repeat="lab in crsCtrl.course.modules.lessons.labs">
+			{{lab}}
+		</li>
+	</ul>
+</div>

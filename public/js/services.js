@@ -1,15 +1,15 @@
 (function () {
 
-  angular.module('pokedex.services', [])
+  angular.module('courses.services', [])
 
-    .factory('pokemonService', ['$http', '$q', '$filter', '$window', function ($http, $q, $filter, $window) {
+    .factory('courseService', ['$http', '$q', '$filter', '$window', function ($http, $q, $filter, $window) {
       var normalize = $filter('normalize');
       var localStorage = $window.localStorage;
 
       function all() {
         var deferred = $q.defer();
 
-        $http.get('/pokemons.json')
+        $http.get('/pokemon.json')
           .success(function (data) {
             deferred.resolve(data);
           });
@@ -23,8 +23,8 @@
         var deferred = $q.defer();
 
         all().then(function (data) {
-          var results = data.filter(function (pokemon) {
-            return normalize(pokemon.name) === name;
+          var results = data.filter(function (course) {
+            return normalize(course.name) === name;
           });
 
           if (results.length > 0) {
@@ -43,8 +43,8 @@
         var deferred = $q.defer();
 
         all().then(function (data) {
-          var results = data.filter(function (pokemon) {
-            return pokemon.type.some(function (t) {
+          var results = data.filter(function (course) {
+            return course.type.some(function (t) {
               return normalize(t) === type;
             });
           });
@@ -56,15 +56,15 @@
       }
 
 
-      function saveComment(pokemon, comment) {
-        var comments = getComments(pokemon);
+      function saveComment(course, comment) {
+        var comments = getComments(course);
 
         comments.push(comment);
-        localStorage.setItem(pokemon, JSON.stringify(comments));
+        localStorage.setItem(course, JSON.stringify(comments));
       }
 
-      function getComments(pokemon) {
-        var comments = localStorage.getItem(pokemon);
+      function getComments(course) {
+        var comments = localStorage.getItem(course);
 
         if (!comments) {
           comments = [];

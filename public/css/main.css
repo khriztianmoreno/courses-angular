@@ -52,12 +52,12 @@ body {
   border: solid 1px #6d5e9c;
 }
 
-.type-grass {
+.type-course {
   background-color: #78c850;
   border: solid 1px #4e8234;
 }
 
-.type-poison {
+.type-lab {
   background-color: #a040a0;
   border: solid 1px #c183c1;
 }

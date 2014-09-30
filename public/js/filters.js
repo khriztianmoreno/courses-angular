@@ -1,21 +1,9 @@
 (function () {
 
-  angular.module('pokedex.filters', [])
-    .filter('normalize', function () {
-      return function (input) {
-          if (!input) return "";
-
-          input = input
-                  .replace('♀', 'f')
-                  .replace('♂', 'm')
-                  .replace(/\W+/g, "");
-          return input.toLowerCase();
-      };
-    })
-
+  angular.module('course.filters', [])
     .filter('imageify', ['$filter', function ($filter) {
       return function (input) {
-        var url = "img/pokemons/" + $filter('normalize')(input) + ".jpg";
+        var url = "img/coursers/" + input.toLowerCase() + ".png";
         return url;
       };
     }]);

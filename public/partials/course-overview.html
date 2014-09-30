@@ -1,0 +1,27 @@
+<p>{{crsCtrl.course.description}}</p>
+<ul class="list-group">
+	<li class="list-group-item">
+		<strong>Type</strong>
+		<span class="pull-right">
+		<span class="label type type-{{type | lowercase}}" ng-repeat="type in crsCtrl.course.type">
+		{{type}}
+		</span>
+		</span>
+	</li>
+	<li class="list-group-item">
+		<strong>Length</strong>
+		<span class="pull-right">{{crsCtrl.course.length}}</span>
+	</li>
+	<li class="list-group-item">
+		<strong>Cost</strong>
+		<span class="pull-right">{{crsCtrl.course.cost}}</span>
+	</li>
+	<li class="list-group-item">
+		<strong>Audiences</strong>
+		<ul>
+			<li ng-repeat="audience in crsCtrl.course.audiences">
+				{{audience}}
+			</li>
+		</ul>
+	</li>
+</ul>

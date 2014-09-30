@@ -1,87 +1,61 @@
 (function () {
 
-  angular.module('pokedex.directives', [])
-    .directive('pokemonName', function () {
+  angular.module('course.directives', [])
+    .directive('courseOverview', function () {
       return {
         restrict: 'E',
-        templateUrl: 'partials/pokemon-name.html'
-      };
+        templateUrl: 'partials/course-overview.html'
+      }
     })
 
-    .directive('pokemonImage', function () {
+    .directive('courseDetails', function () {
       return {
         restrict: 'E',
-        templateUrl: 'partials/pokemon-image.html'
-      };
+        templateUrl: 'partials/course-details.html'
+      }
     })
 
-    .directive('pokemonData', function () {
+    .directive('courseName', function () {
       return {
         restrict: 'E',
-        templateUrl: 'partials/pokemon-data.html'
-      };
+        templateUrl: 'partials/course-name.html'
+      }
     })
 
-    .directive('pokemonStats', function () {
+    .directive('courseImage', function () {
       return {
         restrict: 'E',
-        templateUrl: 'partials/pokemon-stats.html'
-      };
+        templateUrl: 'partials/course-image.html'
+      }
     })
 
-    .directive('pokemonEvolution', function () {
-      return {
-        retrict: 'E',
-        templateUrl: 'partials/pokemon-evolution.html'
-      };
-    })
-
-    .directive('pokemonType', function () {
+    .directive('courseComments', function () {
       return {
         restrict: 'E',
-        templateUrl: 'partials/pokemon-type.html'
-      };
-    })
+        templateUrl: 'partials/course-comments.html',
+        controller: function () {
+          this.comments = [];
+          this.comment = {};
+          this.show = false;
 
-    .directive('pokemonComments', ['pokemonService', function (pokemonService) {
-      return {
-        restrict: 'E',
-        templateUrl: 'partials/pokemon-comments.html',
-        scope: {
-          name: '@name'
-        },
-        link: function (scope, element, attributes) {
-          attributes.$observe('name', function (value) {
-            if (value) {
-              scope.name = value;
-              scope.comments = pokemonService.getComments(value);
-            }
-          });
-        },
-        controller: function ($scope) {
-          $scope.comments = pokemonService.getComments($scope.name);
-          $scope.comment = {};
-          $scope.show = false;
-
-          $scope.toggle = function () {
-            $scope.show = !$scope.show;
+          this.toggle = function () {
+            this.show = !this.show;
           };
 
-          $scope.anonymousChanged = function () {
-            if ($scope.comment.anonymous) {
-              $scope.comment.email = "";
+          this.anonymousChanged = function () {
+            if (this.comment.anonymous) {
+              this.comment.email = "";
             }
           };
 
-          $scope.addComment = function () {
-            $scope.comment.date = Date.now();
-            pokemonService.saveComment($scope.name, $scope.comment);
-            $scope.comments = pokemonService.getComments($scope.name);
-            $scope.comment = {};
+          this.addComment = function () {
+            this.comment.date = Date.now();
+            this.comments.push(this.comment);
+            this.comment = {};
           };
-
-        }
+        },
+        controllerAs: 'cmtsCtrl'
       };
-    }]);
+    });
 
 })();

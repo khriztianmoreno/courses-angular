@@ -1,0 +1,32 @@
+<!-- course -->
+<div class="page-header">
+  <course-name></course-name>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <course-image></course-image>
+  </div>
+  <!-- tabs -->
+  <div class="col-md-6" ng-controller="TabsController as tabs">
+    <ul class="nav nav-tabs nav-justified">
+      <li ng-class="{ active:tabs.tab === 1 }"><a href="#" ng-click="tabs.selectTab(1)">Overview</a></li>
+      <li ng-class="{ active:tabs.tab === 2 }"><a href="#" ng-click="tabs.selectTab(2)">Course Details</a></li>
+      <li ng-class="{ active:tabs.tab === 3 }"><a href="#" ng-click="tabs.selectTab(3)">Prerequisites</a></li>
+    </ul>
+    <div class="tab-content">
+      <!-- Overview -->
+      <div ng-show="tabs.tab === 1">
+        <course-overview></course-overview>
+      </div>
+      <!-- Course Details -->
+      <div ng-show="tabs.tab === 2">
+        <course-details></course-details>
+      </div>
+    </div>
+    <!-- /tabs -->
+  </div>
+</div>
+<!-- comments -->
+<!-- <course-comments name="{{course.name}}"></course-comments> -->
+<course-comments></course-comments>
+<!-- /course -->
